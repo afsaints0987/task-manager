@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv').config()
 const port = process.env.PORT || 3001
 const TasksRoute = require('./routes/TasksRoutes')
+const UsersRoute = require('./routes/UsersRoutes')
 const {errorHandler} = require('./middlewares/ErrorMiddleware')
 
 const app = express();
@@ -20,14 +21,15 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 // Routes
 app.use('/api/tasks', TasksRoute)
+app.use('/api/users', UsersRoute)
 app.use(errorHandler)
 
 // Connect to DB
-mongoose.connect(process.env.MONGO_URI_TASK, {
+mongoose.connect(process.env.MONGO_URI_, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(console.log('DB Connected to Host:',process.env.MONGO_URI_TASK))
+.then(console.log('DB Connected to Host:',process.env.MONGO_URI_))
 .catch((err) => {console.log('DB Connection Failed', err.message)})
 
 // Connect to Server
