@@ -9,12 +9,14 @@ const registerUser = async (req, res) => {
 
     if(!userName || !email || !password){
         res.status(400).json({message: 'Please fill up the form'})
+        return
     }
 
     // User already exist
     const userExist = await Users.findOne({userName})
     if(userExist){
         res.status(400).json({message: 'User already exist'})
+        return
     }
 
     // Hash password
