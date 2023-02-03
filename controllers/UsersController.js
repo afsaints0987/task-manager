@@ -41,6 +41,7 @@ const registerUser = async (req, res) => {
         })
     } else {
         res.status(400).json({message: 'User Registration Failed'})
+        return
     }
 }
 
@@ -64,6 +65,7 @@ const loginUser = async (req, res) => {
         })
     }   else {
         res.status(400).json({message: 'Invalid Credentials'})
+        return
     }
 }
 

@@ -8,18 +8,21 @@ const getTasks = async (req, res) => {
 
 // Create New tasks
 const createTask = async (req, res) => {
+    const user = await Users.findById(req.user.id)
     const {title, priority, isCompleted} = req.body
 
     if(!title && !priority){
         res.status(400).json({message: 'Please fill up the form'})
     }
 
-    // Task already exist
-    const taskExist = await Tasks.findOne({title})
+    // Task already exist from the user
+    const taskExist = await Tasks.findOne({title, user: req.user.id})
     if(taskExist){
         res.status(400).json({message: 'Task already exist'})
-        return
+        return  
     }
+    
+
     const task = await Tasks.create({
         title,
         priority,
@@ -32,6 +35,7 @@ const createTask = async (req, res) => {
             title: task.title,
             priority: task.priority,
             isCompleted: task.isCompleted,
+            user: task.user,
             message: 'Task Created'
         })
     } else {
