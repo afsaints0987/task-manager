@@ -29,5 +29,10 @@ body {
   .table {
     vertical-align: middle;
   }
+
+  .icons:hover {
+    opacity: 0.90;
+    cursor: pointer
+  }
 }
 

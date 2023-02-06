@@ -1,19 +1,28 @@
-const data = [
+export const taskData = [
     {
         id: 1,
         title: "My First Task",
-        priority: "High Priority"
+        priority: "High Priority",
+        isCompleted: false
     },
     {
         id: 2,
         title: "My Second Task",
-        priority: "Low Priority"
+        priority: "Low Priority",
+        isCompleted: false
     },
     {
         id: 3,
         title: "My Third Task",
-        priority: "Low Priority"
+        priority: "Low Priority",
+        isCompleted: false
     },
 ]
 
-export default data
+export const userData = [
+    {
+        id: 1,
+        email: "johndoe@dev.com",
+        password: "test123"
+    }
+]
