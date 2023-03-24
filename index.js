@@ -36,3 +36,5 @@ mongoose.connect(process.env.MONGO_URI_, {
 app.listen(port, ()=> {
     console.log(`Server listening to PORT ${port}`)
 })
+
+module.exports = app;
