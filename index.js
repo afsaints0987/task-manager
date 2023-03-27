@@ -20,12 +20,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 // Routes
-app.use('/api/tasks', TasksRoute)
-app.use('/api/users', UsersRoute)
-
 app.get('/', (req, res) => {
     res.send('Server is running')
 })
+
+app.use('/api/tasks', TasksRoute)
+app.use('/api/users', UsersRoute)
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI_, {
     useNewUrlParser: true,
