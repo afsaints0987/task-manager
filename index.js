@@ -27,11 +27,11 @@ app.get('/', (req, res) => {
 app.use('/api/tasks', TasksRoute)
 app.use('/api/users', UsersRoute)
 // Connect to DB
-mongoose.connect(process.env.MONGO_URI_, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(console.log('DB Connected to Host:',process.env.MONGO_URI_))
+.then(console.log('DB Connected to Host:',process.env.MONGODB_URI))
 .catch((err) => {console.log('DB Connection Failed', err.message)})
 
 // Connect to Server
