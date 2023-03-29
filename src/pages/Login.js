@@ -1,15 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useLogin } from '../hooks/useLogin'
+import Loading from '../components/Loading'
 
 const Login = () => {
     const navigate = useNavigate()
-    const { login, error, message } = useLogin()
+    const { login, loading, message } = useLogin()
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target
         setForm({
@@ -21,21 +22,24 @@ const Login = () => {
     // Handle form once submit
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(form)
 
-        await login({
+        const userData = {
             email: form.email,
-            password: form.password
-        })
-
+            password: form.password,
+        }
+        
+        await login(userData)
+        return message
         navigate('/dashboard')
-
+    }
+    if (loading) {
+        return <Loading />
     }
 
     return (
         <div className="container d-flex justify-content-center mt-5">
             <form className="d-flex flex-column mt-5" onSubmit={handleSubmit}>
-                {error && <span className="text-danger text-center">{message}</span>}
+                {message && <p className="text-center text-danger">{message}</p>}
                 <div className="my-3 text-center">
                     <h4 style={{ fontWeight: 700 }}>Task Manager</h4>
                     <h5 className="mt-4">Login Account</h5>
