@@ -4,7 +4,6 @@ import Loading from '../components/Loading'
 import {Link} from 'react-router-dom'
 import {useEffect, useState, useContext} from 'react'
 import { UserContext } from '../context/UserContext';
-import { useLogin } from '../hooks/useLogin'
 
 const Dashboard = () => {
     const [user, setUser] = useState(null)
