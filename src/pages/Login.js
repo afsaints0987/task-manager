@@ -1,10 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useLogin } from '../hooks/useLogin'
 import Loading from '../components/Loading'
 
 const Login = () => {
-    const navigate = useNavigate()
+    
     const { login, loading, message } = useLogin()
     const [form, setForm] = useState({
         email: '',
@@ -29,8 +29,8 @@ const Login = () => {
         }
         
         await login(userData)
-        return message
-        navigate('/dashboard')
+
+       
     }
     if (loading) {
         return <Loading />
