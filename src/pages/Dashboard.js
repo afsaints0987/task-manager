@@ -8,12 +8,16 @@ import { useLogin } from '../hooks/useLogin'
 
 const Dashboard = () => {
     const [user, setUser] = useState(null)
+    const [message, setMessage] = useState('')
     const { state } = useContext(UserContext)
-    const { message } = useLogin()
     
     useEffect(() => {
         setUser(state.user)
-    },[state ])
+        setMessage(state.user.message)
+        setTimeout(() => {
+            setMessage('')
+        }, 3000)
+    },[state])
 
     if(!user){
         return <Loading/>
@@ -21,7 +25,7 @@ const Dashboard = () => {
     
     return (
         <div className="container-lg mt-4">
-            {message && <p className="text-success">{message}</p>}
+            {user && <p className="text-success">{message}</p>}
             <p>Welcome {user.userName}!</p>
             <div className="tasks_welcome">
             <h2>Dashboard</h2>
