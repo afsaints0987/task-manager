@@ -1,5 +1,6 @@
 import {useState, useEffect, useCallback} from 'react'
 import ConfirmDelete from '../components/ConfirmDelete'
+import Loading from '../components/Loading'
 import * as FaIcons from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import http from '../data/api'
@@ -7,6 +8,7 @@ import http from '../data/api'
 const Table = ({userInfo}) => {
     const [tasks, setTasks] = useState([])
     const [title, setTitle] = useState([])
+    const [loading, setLoading] = useState(false)
     const [id, setId] = useState([])
     const [isCompleted, setIsCompleted] = useState(false)
     const [show, setShow] = useState(false)
@@ -14,6 +16,7 @@ const Table = ({userInfo}) => {
     
     // Get All Tasks
     const getTasks = useCallback(async () => {
+            setLoading(true)
             const tasksData = await http.get('/api/tasks', {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
@@ -21,6 +24,7 @@ const Table = ({userInfo}) => {
             });
             const allTasks = await tasksData.data
             setTasks(allTasks)
+            setLoading(false)
     },[userInfo])
 
     useEffect(()=> {
@@ -86,6 +90,10 @@ const Table = ({userInfo}) => {
         setInterval(()=> {
             setSuccess(false)
         }, 5000)
+    }
+
+    if(loading){
+        return <Loading/>
     }
 
     return (
