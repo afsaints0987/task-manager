@@ -7,16 +7,12 @@ import { UserContext } from '../context/UserContext';
 
 const Dashboard = () => {
     const [user, setUser] = useState(null)
-    const [message, setMessage] = useState('')
     const { state } = useContext(UserContext)
     
     useEffect(() => {
         setUser(state.user)
-        setMessage(state.user.message)
-        setTimeout(() => {
-            setMessage('')
-        }, 3000)
     },[state])
+
 
     if(!user){
         return <Loading/>
@@ -24,7 +20,6 @@ const Dashboard = () => {
     
     return (
         <div className="container-lg mt-4">
-            {user && <p className="text-success">{message}</p>}
             <p>Welcome {user.userName}!</p>
             <div className="tasks_welcome">
             <h2>Dashboard</h2>
