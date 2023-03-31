@@ -46,16 +46,22 @@ const Register = () => {
             }, 3000)
             return
         } 
+        if(user.password.length < 6) {
+            setError(true)
+            setMessage("Password must be at least 6 characters long")
+            setTimeout(() => {
+                setError(false)
+            }, 3000)
+            return
+        }
         const userData = {
             userName: user.userName,
             email: user.email,
             password: user.password
         }
 
-        console.log(userData)
         const response = await http.post('api/users', userData)
-        console.log(response.data)
-        console.log(response.data.message)
+        
         navigate('/')
     }
     
