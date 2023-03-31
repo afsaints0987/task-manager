@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import CreateTask from './pages/CreateTask'
 import EditTask from './pages/EditTask'
 import Footer from './components/Footer'
+import ErrorPage from './pages/ErrorPage'
 import {Routes, Route, Navigate} from 'react-router-dom'
 import {useContext} from 'react'
 import { UserContext } from './context/UserContext';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/dashboard" element={state.user ? <Dashboard/> : <Navigate to='/'/>}></Route>
           <Route path="/create" element={state.user ? <CreateTask/> : <Navigate to='/'/>}></Route>
           <Route path="/edit/:id" element={state.user ? <EditTask/> : <Navigate to='/'/>}></Route>
+          <Route path='*' element={<ErrorPage/>}/>
         </Routes>
         <Footer/>
       </>

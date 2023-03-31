@@ -9,6 +9,7 @@ const Register = () => {
     const [message, setMessage] = useState('')
     const [error, setError] = useState(false)
     const [passCheck, setPassCheck] = useState(false)
+    const [secondPassCheck, setSecondPassCheck] = useState(false)
     const [user, setUser] = useState({
         userName : '',
         email : '',
@@ -77,15 +78,15 @@ const Register = () => {
                 <div className="form-group my-2">
                     <label className="form-label" htmlFor="password">Password</label>
                     <div className="input-group">
-                    <input className="form-control" type={passCheck ? "password" : "text"} name="password" onChange={handleChange}/>
-                    <span className="icons px-2 input-group-text bg-transparent border-start-0 text-muted" onClick={() => setPassCheck(!passCheck)}>{passCheck ? <FaIcons.FaEyeSlash/> : <FaIcons.FaEye/>}</span>
+                    <input className="form-control" type={!passCheck ? "password" : "text"} name="password" onChange={handleChange}/>
+                    <span className="icons px-2 input-group-text bg-transparent border-start-0 text-muted" onClick={() => setPassCheck(!passCheck)}>{!passCheck ? <FaIcons.FaEyeSlash/> : <FaIcons.FaEye/>}</span>
                     </div>
                 </div>
                 <div className="form-group my-2">
                     <label className="form-label" htmlFor="verifyPass">Repeat Password</label>
                     <div className="input-group">
-                    <input className="form-control" type={passCheck ? "password" : "text"} name="verifyPass" onChange={handleChange}/>
-                    <span className="icons px-2 input-group-text bg-transparent border-start-0 text-muted" onClick={() => setPassCheck(!passCheck)}>{passCheck ? <FaIcons.FaEyeSlash/> : <FaIcons.FaEye/>}</span>
+                    <input className="form-control" type={!secondPassCheck ? "password" : "text"} name="verifyPass" onChange={handleChange}/>
+                    <span className="icons px-2 input-group-text bg-transparent border-start-0 text-muted" onClick={() => setSecondPassCheck(!secondPassCheck)}>{!secondPassCheck ? <FaIcons.FaEyeSlash/> : <FaIcons.FaEye/>}</span>
                     </div>
                 </div>
                 <button className="btn btn-success mt-3" type="submit">Register</button>
