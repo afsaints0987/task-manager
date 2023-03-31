@@ -1,8 +1,6 @@
-import {useNavigate, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const ErrorPage = () => {
-    const navigate = useNavigate()
-
     return (
         <div className="container" id="error">
             <h3>Sorry, Page not Found :(</h3>
