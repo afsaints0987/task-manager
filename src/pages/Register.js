@@ -61,7 +61,8 @@ const Register = () => {
         }
 
         const response = await http.post('api/users', userData)
-        
+        console.log(response.data)
+        console.log(response.data.message)
         navigate('/')
     }
     
